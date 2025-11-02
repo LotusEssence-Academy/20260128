@@ -11,6 +11,14 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<!-- Opening Animation -->
+<div id="opening-animation" class="opening-animation">
+  <div class="opening-bg"></div>
+  <div class="opening-logo-container">
+    <img src="assets/team-logo.jpg" alt="Team Logo" class="opening-logo">
+  </div>
+</div>
+
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress"></div>
 <header class="header">
@@ -380,6 +388,25 @@ function requestParallaxUpdate() {
 }
 
 window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+// Opening Animation
+window.addEventListener('DOMContentLoaded', function() {
+  const opening = document.getElementById('opening-animation');
+  const body = document.body;
+  
+  // Prevent scrolling during animation
+  body.style.overflow = 'hidden';
+  
+  // Animation sequence
+  setTimeout(() => {
+    opening.classList.add('fly-away');
+  }, 2000); // Logo stays for 2 seconds
+  
+  setTimeout(() => {
+    opening.style.display = 'none';
+    body.style.overflow = '';
+  }, 3500); // Total animation: 3.5 seconds
+});
 </script>
 
 <!-- Instagram Embed Script -->
