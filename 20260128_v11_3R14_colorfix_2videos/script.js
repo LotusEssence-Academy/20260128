@@ -1,0 +1,1 @@
+// reserved for enhancements (e.g., intersection observers, menu toggles)
