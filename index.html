@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>山﨑恵理香 初書籍発売記念セミナー</title>
-<link rel="preload" as="image" href="assets/2.png">
+<link rel="preload" as="image" href="assets/poster1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
@@ -22,7 +22,10 @@
 
 <main class="container">
   <section class="hero">
-    <img class="poster" src="assets/2.png" alt="発売記念セミナー ポスター" loading="eager">
+    <div class="poster-container">
+      <img class="poster" id="rotating-poster" src="assets/poster1.png" alt="発売記念セミナー ポスター" loading="eager">
+      <div class="sparkle-effect"></div>
+    </div>
   </section>
 
   <section class="card fade-in" id="outline">
@@ -33,7 +36,7 @@
         <ul class="list">
           <li><b>日程：</b>2026年1月28日（水） 13:00–16:00</li>
           <li><b>会場：</b>doTERRA Japan 本社B1F（東京都港区西麻布３丁目５−５ dōTERRA Japanビル）</li>
-          <li><b>申込条件：</b>書籍をお持ちであればどなたでも申込可</li>
+          <li><b>申込条件：</b>書籍をお持ちのWA会員の方であればどなたでも申込可</li>
           <li><b>参加条件：</b>フードバンク1品以上の持参</li>
           <li><b>特典：</b>サイン会あり</li>
         </ul>
@@ -170,7 +173,7 @@
     <div class="btns">
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfwSJktBv8G2g__M_Xcv4psAAYiKqy6el_4i5zvj7JxFjMzzQ/viewform?usp=dialog" target="_blank" rel="noopener">WEBフォームへ進む</a>
     </div>
-    <p><small>※書籍をお持ちであればどなたでも申込可 ／ ※定員到達で締切</small></p>
+    <p><small>※書籍をお持ちのWA会員の方であればどなたでも申込可 ／ ※定員到達で締切</small></p>
   </section>
 
   <section class="card fade-in">
@@ -293,9 +296,111 @@ function updateCountdown() {
 // Update countdown every second
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+// Poster rotation (every 1 hour)
+const posters = [
+  'assets/poster1.png',
+  'assets/poster2.png',
+  'assets/poster3.png',
+  'assets/poster4.png',
+  'assets/poster5.png'
+];
+
+function rotatePoster() {
+  const now = new Date();
+  const hoursSinceEpoch = Math.floor(now.getTime() / (1000 * 60 * 60));
+  const posterIndex = hoursSinceEpoch % posters.length;
+  const posterImg = document.getElementById('rotating-poster');
+  if (posterImg) {
+    posterImg.src = posters[posterIndex];
+  }
+}
+
+// Rotate poster on load and check every minute
+rotatePoster();
+setInterval(rotatePoster, 60000);
+
+// Welcome popup (first visit only)
+const popup = document.getElementById('welcome-popup');
+const popupClose = document.querySelector('.welcome-popup-close');
+const popupOverlay = document.querySelector('.welcome-popup-overlay');
+
+if (!sessionStorage.getItem('visited')) {
+  setTimeout(() => {
+    popup.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }, 800);
+}
+
+function closePopup() {
+  popup.classList.remove('show');
+  document.body.style.overflow = '';
+  sessionStorage.setItem('visited', 'true');
+}
+
+if (popupClose) {
+  popupClose.addEventListener('click', closePopup);
+}
+
+if (popupOverlay) {
+  popupOverlay.addEventListener('click', closePopup);
+}
+
+const welcomeBtn = document.querySelector('.welcome-btn');
+if (welcomeBtn) {
+  welcomeBtn.addEventListener('click', closePopup);
+}
+
+// Lightweight parallax effect for poster
+let ticking = false;
+const posterImg = document.querySelector('.poster');
+
+function updateParallax() {
+  const scrolled = window.pageYOffset;
+  const posterContainer = document.querySelector('.poster-container');
+  
+  if (posterContainer && posterImg) {
+    const containerTop = posterContainer.offsetTop;
+    const containerHeight = posterContainer.offsetHeight;
+    
+    // Only apply parallax when poster is in viewport
+    if (scrolled < containerTop + containerHeight) {
+      const parallaxValue = scrolled * 0.3;
+      posterImg.style.transform = `translateY(${parallaxValue}px) scale(1.1)`;
+    }
+  }
+  
+  ticking = false;
+}
+
+function requestParallaxUpdate() {
+  if (!ticking) {
+    window.requestAnimationFrame(updateParallax);
+    ticking = true;
+  }
+}
+
+window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 </script>
 
 <!-- Instagram Embed Script -->
 <script async src="//www.instagram.com/embed.js"></script>
+
+<!-- Welcome Popup -->
+<div id="welcome-popup" class="welcome-popup">
+  <div class="welcome-popup-overlay"></div>
+  <div class="welcome-popup-content">
+    <button class="welcome-popup-close" aria-label="閉じる">&times;</button>
+    <div class="welcome-popup-inner">
+      <h2 class="welcome-title">🎉 初書籍発売記念セミナー</h2>
+      <p class="welcome-subtitle">『誰にでも通じる成長の法則』</p>
+      <div class="welcome-badge">先着100名限定</div>
+      <p class="welcome-text">山﨑恵理香が5年間の知見を凝縮した<br>実践ポイントを解説します。</p>
+      <div class="welcome-date">📅 2026年1月28日（水） 13:00〓16:00</div>
+      <a href="#apply" class="welcome-btn">お申し込みはこちら</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
