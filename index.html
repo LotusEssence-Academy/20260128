@@ -97,7 +97,34 @@
 
   <section class="card fade-in" id="apply">
     <h2>お申し込み</h2>
-    <p class="apply-notice">📅 申込受付：<strong>11月3日（日）18:00〜</strong></p>
+    
+    <!-- Countdown Timer -->
+    <div class="countdown-container" id="countdownContainer">
+      <div class="countdown-title">🕒 申込開始まで</div>
+      <div class="countdown-timer" id="countdownTimer">
+        <div class="countdown-item">
+          <span class="countdown-value" id="days">00</span>
+          <span class="countdown-label">日</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="hours">00</span>
+          <span class="countdown-label">時間</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="minutes">00</span>
+          <span class="countdown-label">分</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="seconds">00</span>
+          <span class="countdown-label">秒</span>
+        </div>
+      </div>
+      <div class="countdown-date">2025年11月3日（日）18:00 開始</div>
+    </div>
+    
+    <div class="apply-started" id="applyStarted" style="display:none">
+      <p class="apply-notice">🎉 申込受付中！</p>
+    </div>
     <p>以下のボタンから外部フォームへ進み、必要事項をご入力ください。</p>
     <div class="btns">
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfwSJktBv8G2g__M_Xcv4psAAYiKqy6el_4i5zvj7JxFjMzzQ/viewform?usp=dialog" target="_blank" rel="noopener">WEBフォームへ進む</a>
@@ -194,6 +221,37 @@ window.addEventListener('scroll', () => {
   const scrolled = (window.pageYOffset / windowHeight) * 100;
   progressBar.style.width = scrolled + '%';
 });
+
+// Countdown Timer
+const countdownDate = new Date('2025-11-03T18:00:00+09:00').getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+  
+  if (distance < 0) {
+    // Countdown finished - show "申込受付中"
+    document.getElementById('countdownContainer').style.display = 'none';
+    document.getElementById('applyStarted').style.display = 'block';
+    return;
+  }
+  
+  // Calculate time units
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Update display
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+// Update countdown every second
+updateCountdown();
+setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
