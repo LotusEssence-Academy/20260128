@@ -20,7 +20,7 @@
     <img class="poster" src="assets/2.png" alt="発売記念セミナー ポスター">
   </section>
 
-  <section class="card" id="outline">
+  <section class="card fade-in" id="outline">
     <h2>開催概要</h2>
     <div class="kv">
       <div class="detail">
@@ -40,12 +40,12 @@
     </div>
   </section>
 
-  <section class="card">
+  <section class="card fade-in">
     <h2>セミナー内容</h2>
     <p>『本書籍の効果的な使い方』— 5年間の知見を、あなたとチームの成果に結びつける実践ポイントに凝縮解説。</p>
   </section>
 
-  <section class="card">
+  <section class="card fade-in">
     <h2>プログラム</h2>
     <ul class="schedule" aria-label="プログラム">
       <li><time>13:00</time><span>記念セミナー開演</span></li>
@@ -55,13 +55,13 @@
     </ul>
   </section>
 
-  <section class="card" id="lecturer">
+  <section class="card fade-in" id="lecturer">
     <h2>講師紹介</h2>
     <img src="assets/lecturer.jpg" alt="講師 山﨑恵理香">
     <p>doTERRA社WDDタイトル / GALLUP認定ストレングスコーチ。2020年9月、doTERRA WA登録し、わずか4年で日本最速・最年少のダブルダイヤモンドを達成。女性の精神的・経済的自立を支援。</p>
   </section>
 
-  <section class="card" id="videos">
+  <section class="card fade-in" id="videos">
     <h2>おすすめの動画</h2>
 
     <div class="section-title" style="font-size:1rem;margin-top:0">1. 迷った時に必ず見る動画</div>
@@ -69,9 +69,12 @@
 
     <div class="section-title" style="font-size:1rem">2. 私の原点</div>
     <iframe src="https://www.youtube.com/embed/W67uwWmtbX4" allowfullscreen title="私の原点"></iframe>
+
+    <div class="section-title" style="font-size:1rem">3. ドテラでなくてはいけない理由</div>
+    <iframe src="https://www.youtube.com/embed/GtMTOJwq4Tc" allowfullscreen title="ドテラでなくてはいけない理由"></iframe>
   </section>
 
-  <section class="card" id="book">
+  <section class="card fade-in" id="book">
     <h2>書籍紹介 『誰にでも通じる成長の法則』</h2>
     <div class="two-col">
       <img src="assets/IMG_0416.JPG" alt="書籍カバー">
@@ -87,7 +90,7 @@
     </div>
   </section>
 
-  <section class="card" id="apply">
+  <section class="card fade-in" id="apply">
     <h2>お申し込み</h2>
     <p class="apply-notice">📅 申込受付：<strong>11月3日（日）18:00〜</strong></p>
     <p>以下のボタンから外部フォームへ進み、必要事項をご入力ください。</p>
@@ -97,7 +100,7 @@
     <p><small>※書籍をお持ちであればどなたでも申込可 ／ ※定員到達で締切</small></p>
   </section>
 
-  <section class="card">
+  <section class="card fade-in">
     <h2>Follow Erika Yamazaki</h2>
     <div class="socials">
       <a href="https://www.instagram.com/eri___416?igsh=cTZqMWNtc2NvazAy" target="_blank" rel="noopener" class="social-link">
@@ -115,7 +118,7 @@
     </div>
   </section>
 
-  <section class="card">
+  <section class="card fade-in">
     <h2>問い合わせ先</h2>
     <p><b>担当：</b>山﨑恵理香G事務局　森美希<br>
     <b>メール：</b><a href="mailto:erig.secretariat@gmail.com">erig.secretariat@gmail.com</a></p>
@@ -127,16 +130,36 @@
 <!-- 固定CTAポップアップ -->
 <div class="fixed-cta">
   <div class="fixed-cta-inner">
-    <a href="#apply" class="fixed-cta-btn fixed-cta-primary">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwSJktBv8G2g__M_Xcv4psAAYiKqy6el_4i5zvj7JxFjMzzQ/viewform?usp=dialog" target="_blank" rel="noopener" class="fixed-cta-btn fixed-cta-primary">
       <span class="fixed-cta-icon">📝</span>
       <span class="fixed-cta-text">セミナー申込</span>
     </a>
-    <a href="#buy" class="fixed-cta-btn fixed-cta-secondary">
+    <a href="https://www.nhs-pub.jp/Form/Product/ProductDetail.aspx?shop=0&pid=001001052&prvw=b05aeee2c019e129640d7f8c338c5c62" target="_blank" rel="noopener" class="fixed-cta-btn fixed-cta-secondary">
       <span class="fixed-cta-icon">📚</span>
       <span class="fixed-cta-text">書籍購入</span>
     </a>
   </div>
 </div>
 
+<script>
+// Fade-in animation on scroll
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+const fadeElements = document.querySelectorAll('.fade-in');
+fadeElements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
