@@ -471,3 +471,239 @@ body{
 .instagram-embed-container .instagram-media{
   margin:0 auto !important;
 }
+
+/* Video Card with Platform Badge */
+.video-card{
+  background:rgba(255,255,255,0.9);
+  border:2px solid var(--stroke);
+  border-radius:16px;
+  padding:20px;
+  margin:20px 0;
+  box-shadow:0 4px 12px rgba(210,120,160,.15);
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.video-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg, transparent, rgba(217,144,179,0.1), transparent);
+  transition:left 0.6s;
+}
+
+.video-card:hover::before{
+  left:100%;
+}
+
+.video-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 24px rgba(210,120,160,.25);
+  border-color:var(--accent);
+}
+
+.video-badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:0.85rem;
+  font-weight:800;
+  margin-bottom:12px;
+  animation:slideInFromLeft 0.5s ease;
+}
+
+@keyframes slideInFromLeft{
+  from{
+    opacity:0;
+    transform:translateX(-20px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.video-badge-youtube{
+  background:linear-gradient(135deg, #FF0000, #CC0000);
+  color:white;
+  box-shadow:0 2px 8px rgba(255,0,0,0.3);
+}
+
+.video-badge-instagram{
+  background:linear-gradient(135deg, #E1306C, #FD1D1D, #F77737);
+  color:white;
+  box-shadow:0 2px 8px rgba(225,48,108,0.3);
+}
+
+.video-title{
+  font-size:1.1rem;
+  font-weight:800;
+  color:var(--ink);
+  margin-bottom:14px;
+  letter-spacing:0.02em;
+}
+
+.video-card iframe{
+  animation:fadeInScale 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInScale{
+  from{
+    opacity:0;
+    transform:scale(0.95);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+/* Lecturer Profile */
+.lecturer-profile{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  animation:fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.lecturer-image{
+  flex:0 0 auto;
+  max-width:200px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(210,120,160,.25);
+  transition:transform 0.4s ease;
+}
+
+.lecturer-image:hover{
+  transform:scale(1.05) rotate(2deg);
+}
+
+.lecturer-info{
+  flex:1 1 300px;
+}
+
+.lecturer-name{
+  font-size:1.8rem;
+  font-weight:900;
+  color:var(--accent-strong);
+  margin:0 0 12px;
+  letter-spacing:0.05em;
+  animation:slideInFromRight 0.6s ease;
+}
+
+@keyframes slideInFromRight{
+  from{
+    opacity:0;
+    transform:translateX(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.lecturer-bio{
+  line-height:1.8;
+  color:var(--ink);
+  animation:fadeIn 0.8s ease 0.3s both;
+}
+
+/* Additional Subtle Animations */
+.list li{
+  animation:fadeInLeft 0.5s ease both;
+}
+
+.list li:nth-child(1){animation-delay:0.1s}
+.list li:nth-child(2){animation-delay:0.2s}
+.list li:nth-child(3){animation-delay:0.3s}
+.list li:nth-child(4){animation-delay:0.4s}
+.list li:nth-child(5){animation-delay:0.5s}
+
+@keyframes fadeInLeft{
+  from{
+    opacity:0;
+    transform:translateX(-15px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.schedule li{
+  animation:fadeInRight 0.5s ease both;
+}
+
+.schedule li:nth-child(1){animation-delay:0.1s}
+.schedule li:nth-child(2){animation-delay:0.2s}
+.schedule li:nth-child(3){animation-delay:0.3s}
+.schedule li:nth-child(4){animation-delay:0.4s}
+
+@keyframes fadeInRight{
+  from{
+    opacity:0;
+    transform:translateX(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+/* Book Section Animation */
+.two-col{
+  animation:fadeInScale 0.6s ease 0.2s both;
+}
+
+/* Enhanced Header Animation */
+.brand{
+  animation:slideDown 0.5s ease;
+}
+
+@keyframes slideDown{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.cta-mini a{
+  animation:slideDown 0.5s ease 0.2s both;
+}
+
+/* Responsive adjustments */
+@media(max-width:640px){
+  .lecturer-profile{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  
+  .lecturer-image{
+    max-width:150px;
+  }
+  
+  .lecturer-name{
+    font-size:1.5rem;
+  }
+}
