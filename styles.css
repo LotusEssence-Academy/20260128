@@ -713,6 +713,7 @@ body{
   /* Base font size increase for readability */
   html,body{
     font-size:16px;
+    line-height:1.7;
   }
   
   /* Header optimizations */
@@ -733,13 +734,14 @@ body{
   
   /* Card spacing */
   .card{
-    padding:16px;
-    margin:12px 0;
+    padding:20px 16px;
+    margin:14px 0;
   }
   
   .card h2{
-    font-size:1.4rem;
-    margin-bottom:12px;
+    font-size:1.5rem;
+    margin-bottom:16px;
+    line-height:1.4;
   }
   
   /* Countdown timer mobile optimization */
@@ -1227,17 +1229,15 @@ body{
    ======================================== */
 .sold-out-banner{
   background:linear-gradient(135deg, #ff6b9d 0%, #c9709c 50%, #d99cb8 100%);
-  border-radius:20px;
-  padding:40px 30px;
-  margin:0 0 30px 0;
+  border-radius:16px;
+  padding:32px 24px;
+  margin:0 0 24px 0;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:30px;
-  box-shadow:0 10px 40px rgba(201,112,156,0.4);
+  box-shadow:0 8px 24px rgba(201,112,156,0.35);
   position:relative;
   overflow:hidden;
-  animation:soldOutPulse 2s ease-in-out infinite;
 }
 
 .sold-out-banner::before{
@@ -1254,10 +1254,7 @@ body{
   animation:soldOutShine 3s ease-in-out infinite;
 }
 
-.sold-out-icon{
-  font-size:4rem;
-  animation:soldOutIconBounce 1s ease-in-out infinite;
-}
+
 
 .sold-out-content{
   text-align:center;
@@ -1307,58 +1304,65 @@ body{
   }
 }
 
-@keyframes soldOutIconBounce{
-  0%, 100%{
-    transform:translateY(0) scale(1);
-  }
-  50%{
-    transform:translateY(-10px) scale(1.1);
-  }
-}
+
 
 /* Mobile adjustments for sold-out banner */
 @media(max-width:768px){
   .sold-out-banner{
-    padding:30px 20px;
-    gap:15px;
-    flex-direction:column;
-  }
-  
-  .sold-out-icon{
-    font-size:3rem;
+    padding:28px 20px;
+    border-radius:12px;
   }
   
   .sold-out-title{
-    font-size:2rem;
+    font-size:1.8rem;
+    margin-bottom:12px;
   }
   
   .sold-out-text{
-    font-size:1.1rem;
+    font-size:1.05rem;
+    line-height:1.6;
+    margin-bottom:10px;
   }
   
   .sold-out-thanks{
-    font-size:0.9rem;
+    font-size:0.95rem;
+    line-height:1.5;
   }
 }
 
 @media(max-width:480px){
   .sold-out-banner{
-    padding:25px 15px;
-  }
-  
-  .sold-out-icon{
-    font-size:2.5rem;
+    padding:24px 16px;
+    border-radius:10px;
   }
   
   .sold-out-title{
-    font-size:1.6rem;
+    font-size:1.5rem;
+    margin-bottom:10px;
   }
   
   .sold-out-text{
-    font-size:1rem;
+    font-size:0.95rem;
+    line-height:1.6;
+    margin-bottom:8px;
   }
   
   .sold-out-thanks{
     font-size:0.85rem;
+    line-height:1.5;
+  }
+  
+  /* Button optimization for mobile */
+  .btn{
+    padding:16px 28px;
+    font-size:1.05rem;
+    min-height:52px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .btns{
+    gap:14px;
   }
 }
