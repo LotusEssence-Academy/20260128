@@ -1366,3 +1366,131 @@ body{
     gap:14px;
   }
 }
+/* ========================================
+   追加募集バナー
+   ======================================== */
+.resale-banner{
+  background:linear-gradient(135deg, #ff6b9d 0%, #c9709c 50%, #d99cb8 100%);
+  border-radius:16px;
+  padding:32px 24px;
+  margin:0 0 24px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(201,112,156,0.35);
+  position:relative;
+  overflow:hidden;
+}
+
+.resale-banner::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255,255,255,0.2) 50%, 
+    transparent 70%);
+  animation:resaleShine 3s ease-in-out infinite;
+}
+
+.resale-content{
+  text-align:center;
+  color:white;
+  position:relative;
+  z-index:1;
+}
+
+.resale-title{
+  font-size:2.5rem;
+  font-weight:900;
+  margin:0 0 10px 0;
+  text-shadow:0 4px 10px rgba(0,0,0,0.3);
+  letter-spacing:0.05em;
+}
+
+.resale-text{
+  font-size:1.1rem;
+  font-weight:600;
+  margin:0 0 8px 0;
+  text-shadow:0 2px 6px rgba(0,0,0,0.2);
+  opacity:0.95;
+}
+
+.resale-notice{
+  font-size:1.2rem;
+  font-weight:700;
+  margin:0;
+  text-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+
+.resale-notice strong{
+  font-size:1.3rem;
+  letter-spacing:0.05em;
+}
+
+@keyframes resaleShine{
+  0%{
+    transform:translateX(-100%) translateY(-100%);
+  }
+  100%{
+    transform:translateX(100%) translateY(100%);
+  }
+}
+
+/* Mobile adjustments for resale banner */
+@media(max-width:768px){
+  .resale-banner{
+    padding:28px 20px;
+    border-radius:12px;
+  }
+  
+  .resale-title{
+    font-size:1.8rem;
+    margin-bottom:12px;
+  }
+  
+  .resale-text{
+    font-size:1rem;
+    line-height:1.6;
+    margin-bottom:10px;
+  }
+  
+  .resale-notice{
+    font-size:1.1rem;
+    line-height:1.5;
+  }
+  
+  .resale-notice strong{
+    font-size:1.2rem;
+  }
+}
+
+@media(max-width:480px){
+  .resale-banner{
+    padding:24px 16px;
+    border-radius:10px;
+  }
+  
+  .resale-title{
+    font-size:1.5rem;
+    margin-bottom:10px;
+  }
+  
+  .resale-text{
+    font-size:0.9rem;
+    line-height:1.6;
+    margin-bottom:8px;
+  }
+  
+  .resale-notice{
+    font-size:1rem;
+    line-height:1.5;
+  }
+  
+  .resale-notice strong{
+    font-size:1.1rem;
+  }
+}

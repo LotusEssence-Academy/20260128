@@ -141,17 +141,17 @@
   <section class="card fade-in" id="apply">
     <h2>お申し込み</h2>
     
-    <!-- 満員御礼バナー -->
-    <div class="sold-out-banner">
-      <div class="sold-out-content">
-        <h3 class="sold-out-title">満員御礼</h3>
-        <p class="sold-out-text">おかげさまで募集開始2分で満席となりました</p>
-        <p class="sold-out-thanks">たくさんのお申し込み、誠にありがとうございました</p>
+    <!-- 追加募集案内 -->
+    <div class="resale-banner">
+      <div class="resale-content">
+        <h3 class="resale-title">追加募集50席決定！</h3>
+        <p class="resale-text">おかげさまで前回は2分で満席となりました</p>
+        <p class="resale-notice">追加募集は<strong>50席限定</strong>です。お見逃しなく！</p>
       </div>
     </div>
     
     <!-- Countdown Timer -->
-    <div class="countdown-container" id="countdownContainer" style="display:none">
+    <div class="countdown-container" id="countdownContainer">
       <div class="countdown-title">🕒 申込開始まで</div>
       <div class="countdown-timer" id="countdownTimer">
         <div class="countdown-item">
@@ -171,7 +171,7 @@
           <span class="countdown-label">秒</span>
         </div>
       </div>
-      <div class="countdown-date">2025年11月3日（日）18:00 開始</div>
+      <div class="countdown-date">2025年11月5日（火）18:00 開始</div>
     </div>
     
     <div class="apply-started" id="applyStarted" style="display:none">
@@ -275,7 +275,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Countdown Timer
-const countdownDate = new Date('2025-11-03T18:00:00+09:00').getTime();
+const countdownDate = new Date('2025-11-05T18:00:00+09:00').getTime();
 
 function updateCountdown() {
   const now = new Date().getTime();
