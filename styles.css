@@ -1610,3 +1610,236 @@ body{
     line-height:1.5;
   }
 }
+
+/* ========================================
+   重要なお知らせオーバーレイ
+   ======================================== */
+.important-notice-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: noticeOverlayFadeIn 0.4s ease;
+}
+
+@keyframes noticeOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.important-notice-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+.important-notice-modal {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 3px solid #dc3545;
+  z-index: 10001;
+  animation: noticeModalSlideUp 0.5s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes noticeModalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.notice-badge-red {
+  display: inline-block;
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  color: white;
+  font-weight: 900;
+  font-size: 1.3rem;
+  padding: 12px 24px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.notice-content-red {
+  color: #333;
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.notice-content-red p {
+  margin: 0 0 20px 0;
+}
+
+.notice-content-red strong {
+  color: #dc3545;
+  font-weight: 900;
+  font-size: 1.1em;
+}
+
+.notice-highlight-red {
+  background: #fff5f5;
+  border-left: 4px solid #dc3545;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 8px;
+}
+
+.contact-section {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid #e0e0e0;
+}
+
+.contact-title {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
+}
+
+.contact-btn-instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+}
+
+.contact-btn-instagram:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(188, 24, 136, 0.4);
+}
+
+.contact-btn-email {
+  background: linear-gradient(135deg, #4285f4, #34a853);
+  color: white;
+}
+
+.contact-btn-email:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+}
+
+/* タブレット対応 */
+@media (max-width: 768px) {
+  .important-notice-modal {
+    padding: 30px 20px;
+  }
+
+  .notice-badge-red {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+
+  .notice-content-red {
+    font-size: 1rem;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+  }
+
+  .contact-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+  .important-notice-overlay {
+    padding: 10px;
+  }
+
+  .important-notice-modal {
+    padding: 24px 16px;
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+
+  .notice-badge-red {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .notice-content-red {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .notice-highlight-red {
+    padding: 16px;
+  }
+
+  .contact-title {
+    font-size: 1.05rem;
+  }
+
+  .contact-btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* スクロールバーのスタイル（モーダル内） */
+.important-notice-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.important-notice-modal::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.important-notice-modal::-webkit-scrollbar-thumb {
+  background: #dc3545;
+  border-radius: 10px;
+}
+
+.important-notice-modal::-webkit-scrollbar-thumb:hover {
+  background: #c82333;
+}
