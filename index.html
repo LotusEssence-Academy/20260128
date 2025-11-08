@@ -389,6 +389,24 @@ function requestParallaxUpdate() {
 }
 
 window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+
+// Important Notice Overlay Close Button
+const importantNoticeOverlay = document.getElementById('important-notice-overlay');
+const importantNoticeCloseBtn = document.querySelector('.important-notice-close');
+
+if (importantNoticeCloseBtn && importantNoticeOverlay) {
+  importantNoticeCloseBtn.addEventListener('click', function() {
+    importantNoticeOverlay.style.display = 'none';
+  });
+  
+  // Click backdrop to close
+  const backdrop = document.querySelector('.important-notice-backdrop');
+  if (backdrop) {
+    backdrop.addEventListener('click', function() {
+      importantNoticeOverlay.style.display = 'none';
+    });
+  }
+}
 </script>
 
 <!-- Instagram Embed Script -->
@@ -398,7 +416,9 @@ window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 <div id="important-notice-overlay" class="important-notice-overlay">
   <div class="important-notice-backdrop"></div>
   <div class="important-notice-modal">
+    <button class="important-notice-close" aria-label="閉じる">&times;</button>
     <div class="notice-badge-red">⚠️ 重要なお知らせ</div>
+    <h3 class="notice-seminar-title">山ﾚ恵理香 初書籍発売記念セミナーについて</h3>
     
     <div class="notice-content-red">
       <p>応募が完了できている方は、<strong>自動返信メールとともに専用のオープンチャットへのご案内が届いています。</strong></p>
